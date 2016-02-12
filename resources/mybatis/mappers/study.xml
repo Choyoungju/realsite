@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="study">
+
+	<insert id="insert" parameterType="StudyVo">
+		<![CDATA[
+		insert
+		  into study
+		]]>  
+		<choose>
+			<when test="groupNo == null">
+				<![CDATA[
+				values ( study_no_seq.nextval,  #{title }, #{content }, #{memberNo }, 0, nvl( ( select max( group_no ) from study ), 0) + 1, 1, 1, SYSDATE , #{filename})
+				]]>			 
+			</when>
+			<otherwise>
+				<![CDATA[
+				values ( study_no_seq.nextval, #{title }, #{content }, #{memberNo }, 0, #{groupNo }, #{orderNo } + 1, #{depth } + 1, SYSDATE,  #{filename} )
+				]]>		 
+			</otherwise>
+		</choose>
+	</insert>
+	
+	<select id="selectList" resultType="StudyVo" parameterType="map">
+		<![CDATA[
+		SELECT * 
+		  FROM ( SELECT rownum as rnum, C.* 
+				   FROM ( SELECT A.no, A.title, A.member_no as memberNo, B.name as memberName, A.view_cnt as viewCount, A.depth, to_char( A.reg_date, 'yyyy-mm-dd hh:mi:ss' ) as regDate 
+						    FROM study A, member B
+						   WHERE A.member_no = B.no
+		]]>
+		<if test="searchKeyword != ''">
+			<![CDATA[				     
+						     AND ( A.title LIKE '%${searchKeyword }%' OR A.content LIKE '%${searchKeyword }%' )
+			]]>
+		</if>				     
+		<![CDATA[				     
+						ORDER BY group_no DESC,  order_no  ASC ) C )
+	     WHERE ( #{page } - 1 ) * #{pageSize } + 1 <= rnum AND rnum <=  #{page } * #{pageSize }
+		]]>	
+	</select>
+	
+	<select id="selectCount" resultType="long" parameterType="map">
+		<![CDATA[
+		select count(*) 
+		  from study
+		]]>
+		<if test="searchKeyword != ''">
+			<![CDATA[				     
+			 where ( title like '%${searchKeyword }%' or content like '%${searchKeyword }%' )
+			]]>
+		</if>		
+	</select>
+		
+	<select id="selectByNo" resultType="StudyVo" parameterType="long">
+		<![CDATA[
+		select no, title,filename ,content, member_no as memberNo, group_no as groupNo, order_no as orderNo, depth
+		  from study
+		 where no=#{no }			
+		]]>
+	</select>
+	
+	<delete id="delete" parameterType="map">
+		<![CDATA[
+		delete
+		  from study
+		 where no = #{no }
+		   and member_no = #{memberNo }
+		]]>
+	</delete>
+	
+	<update id="update" parameterType="StudyVo">
+		<![CDATA[
+		update study
+		   set title = #{title }, content = #{content }
+         where no = #{no }
+           and member_no = #{memberNo }
+		]]>			
+	</update>
+		
+	<update id="updateViewCount" parameterType="long">
+		<![CDATA[
+		update study
+		   set view_cnt = view_cnt + 1		
+         where no = #{no }
+		]]>			
+	</update>
+	
+	<update id="updateOrderNo" parameterType="long">
+		<![CDATA[
+		update study
+		   set order_no = order_no + 1		
+         where order_no > #{parentOrderNo }
+		]]>			
+	</update>	
+	
+</mapper>

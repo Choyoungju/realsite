@@ -1,0 +1,29 @@
+@CHARSET "UTF-8";
+@import "mysite.css";
+
+#diary			{ margin:20px auto;	width:540px; }
+
+#diary form, 
+#diary table	{ width:100% }
+
+#diary table,	
+#diary table td { border:1px solid #333 }
+#diary table td { padding:5px }
+
+#diary ul		{ width:100%; margin-top:20px }
+#diary ul li	{ width:100%; margin-top:10px }
+
+
+#diary.delete-form	{ height:200px }
+#diary.delete-form form {
+	width:300px;
+	padding:10px;
+	border:1px solid #666;
+	border-radius: 10px;
+	margin:50px auto;
+}
+#diary.delete-form a	{ display:block; margin:20px auto; width:110px }
+
+#diary.delete-message p	{ padding:100px; height:50px; text-align:center }
+
+#diary textarea#content	{ width: 100%; border:none; height: 100px; resize: none; outline: none; }

@@ -1,0 +1,67 @@
+@CHARSET "UTF-8";
+
+/* reset */
+*				{ margin:0; padding:0 }
+body			{ font:0.75em "맑은 고딕", 돋움, 굴림; text-align:center;   background-image: url("back.jpg")}
+ul, ol			{ list-style-type: none }
+
+/* layout */
+div#container	{ text-align:left; width:730px; margin:0 auto; background-color:#333 }
+div#content		{ float:right; width:580px; background-color:#fff }
+div#navigation	{ float:left; width:120px;  }
+div#footer		{ clear:both; width:100% }
+
+/* header */
+div#header	h1				{ height:70px; line-height:70px; margin:0; padding-left:10px; color:#79B30B }
+div#header	ul				{ height:20px; margin:0 20px 10px 0 } 
+div#header	li				{ float:right }
+div#header	li a 			{ color:#fff; font-weight:bold; margin-left:10px; text-decoration:none; }
+
+
+/* navigation */
+
+/*div#navigation ul			{ width:118px; margin-top:1px }
+div#navigation li			{ width:118px; background-color:#E9E9E9; border:1px solid #DADADA; margin-top:-1px }
+div#navigation li a			{ display:block; color:#4F4F4F; width:98px; font-weight:bold; padding:5px 10px; font-size:1.1em }
+div#navigation li.selected	{ background:#E0E0E0 }
+div#navigation li a:link	{ color:#4F4F4F; text-decoration:none; }
+div#navigation li a:hover	{ color:#4F4F4F; text-decoration:none; }
+div#navigation li a:visited	{ color:#4F4F4F; text-decoration:none; }
+div#navigation li a:active	{ color:#4F4F4F; text-decoration:none; } */
+
+div#navigation {
+  background: #333;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 12em;
+}
+div#navigation li {
+  font: 67.5% "Lucida Sans Unicode", "Bitstream Vera Sans", "Trebuchet Unicode MS", "Lucida Grande", Verdana, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+div#navigation a {
+  background: #333;
+  border-bottom: 1px solid #393939;
+  color: #ccc;
+  display: block;
+  margin: 0;
+  padding: 8px 12px;
+  text-decoration: none;
+  font-weight: normal;
+}
+div#navigation a:hover {
+  background: #2580a2 url("images/hover.gif") left center no-repeat;
+  color: #fff;
+  padding-bottom: 8px;
+}
+
+
+
+/* footer */
+div#footer		{ background:#515151; color: #79B30B  }
+div#footer p	{ margin:0;padding:5px 10px }
+
+
