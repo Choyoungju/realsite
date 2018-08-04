@@ -58,7 +58,7 @@ $(function(){
 		}
 		//ajax 통신
 		$.ajax( {
-			url : "/site/api/user/checkemail",
+			url : "/mysite/api/user/checkemail",
 			type: "get",
 			dataType: "json",
 			data: "email=" + email,
