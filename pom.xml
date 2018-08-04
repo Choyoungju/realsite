@@ -82,12 +82,13 @@
 	<artifactId>spring-jdbc</artifactId>
 	<version>${org.springframework-version}</version>
 </dependency>
-<!-- oracle jdbc -->
+<!-- oracle jdbc 
 			  <dependency>
 			         <groupId>com.oracle</groupId>
 			         <artifactId>ojdbc6</artifactId>
 			         <version>11.1.0.7.0</version>
 		     </dependency>
+-->
 
 
 <!-- common fileupload 파일업로드처리1-->
